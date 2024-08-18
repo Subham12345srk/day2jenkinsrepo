@@ -1,5 +1,9 @@
 pipeline{
-    agent any
+    agent {
+        node{
+            label 'JenkinsSlaveNodeLabel'
+        }
+    }
     stages{
         stage("checkout code stage"){
             steps{
@@ -16,7 +20,7 @@ pipeline{
         stage("Build docker image"){
             steps{
                 sh 'docker build -t myimage .'
-                
+
             }
         }
         stage("Create Container"){
