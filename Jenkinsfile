@@ -10,7 +10,12 @@ pipeline{
                 git url: 'https://github.com/Subham12345srk/day2jenkinsrepo.git',branch:'main'           
                  }
         }
-      
+       stage("Cleanup Stage"){
+            steps{
+                sh 'docker rm -f $(docker ps -aq)'
+                sh 'docker rmi -f myimage'
+            } 
+        }
                                 
         stage("Build docker image"){
             steps{
